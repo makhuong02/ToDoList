@@ -5,8 +5,18 @@
 .Header {
 	background-color: #a1d6b2;
 	width: 100%;
+	height: 50px;
 	padding: 10px;
-	margin-bottom: 20px;
+	box-shadow: 0 1px 5px rgb(138, 137, 137);
+	position: relative;
+	z-index: 10;
+}
+
+.main-container {
+	width: 100%;
+	height: calc(100vh - 70px);
+	display: grid;
+	grid-template-columns: 1fr 5fr;
 }
 
 h1 {
@@ -57,6 +67,90 @@ textarea {
 	outline: none;
 	border: none;
 	color: #cd5c08;
+}
+
+.calendar {
+	width: 360px;
+	background: #9eddff;
+	padding: 10px;
+	box-shadow: 0 1px 5px rgb(138, 137, 137);
+	text-align: left;
+}
+
+.calendar-cell {
+	display: inline-block;
+	width: 14%;
+	margin: -1px 0 0 -1px;
+	padding: 10px 0;
+	text-align: center;
+	cursor: default;
+	transition: background-color 0.3s ease;
+	border: 1px solid #34495e;
+}
+
+.blank-cell {
+	display: inline-block;
+	width: 14%;
+	margin: -1px 0 0 -1px;
+	padding: 10px 0;
+	text-align: center;
+	border: 1px solid #34495e;
+	color: gray;
+}
+
+.hightlight {
+	font-weight: bold;
+	color: #ef9c66;
+}
+
+.selected {
+	background-color: #5b99c2;
+}
+
+.days .calendar-cell:hover {
+	cursor: pointer;
+	background-color: #5b99c2;
+}
+
+.month {
+	text-align: center;
+	color: #34495e;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	cursor: default;
+}
+
+.left-arrow {
+	float: left;
+	padding-top: 10px;
+	cursor: pointer;
+}
+
+.right-arrow {
+	float: right;
+	padding-top: 10px;
+	cursor: pointer;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+.weekdays {
+	color: #34495e;
+	font-weight: bold;
+}
+
+.content {
+	text-align: center;
+	overflow: auto;
 }
 
 form {
