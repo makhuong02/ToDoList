@@ -77,12 +77,32 @@ app.get('/data/:year/:month/:date', async (req, res) => {
 });
 
 app.post('/add', async (req, res) => {
-	console.log(req.body);
     const { id, title, task, dateStr } = req.body;
     try {
         const result = await db.query(
             'INSERT INTO "Task" VALUES ($1, $2, $3, $4)',
             [id, title, task, dateStr]
+        );
+		if (result.rowCount !== 0) {
+			res.sendStatus(201);
+		} else {
+			res.sendStatus(409);
+		}
+    } catch (err) {
+        console.error(err.message);
+        res.sendStatus(500);
+    }
+});
+
+// update completed status
+app.patch('/data/:id', async (req, res) => {
+	const { id } = req.params;
+	const { status } = req.body;
+
+	try {
+        const result = await db.query(
+            'UPDATE "Task" SET completed = $1 WHERE id = $2',
+            [status, id]
         );
 		if (result.rowCount !== 0) {
 			res.sendStatus(201);

@@ -18,9 +18,21 @@ function App() {
 	};
 
 	const toggleComplete = id => {
+		let [temp] = todos.filter((value) => (value.id === id));
+		updateTaskStatus(id, !temp.completed);
 		setTodos(todos.map(todo =>
 			todo.id === id ? { ...todo, completed: !todo.completed } : todo
 		));
+	};
+
+	const updateTaskStatus = async (id, status) => {
+		try {
+			await axios.patch(`http://localhost:5000/data/${id}`, {
+				status
+			});
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	const deleteTodo = async (id) => {
